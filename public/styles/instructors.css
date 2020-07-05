@@ -7,6 +7,40 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  /* Box shadow:
+  X axis , y axis , blur , spread
+   */
+  box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.2);
+
+  animation-name: up;
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+
+  /* The element don't return to inicial state after animation  */
+  /* animation-fill-mode: forwards; */
+
+  /* Animation begin after 300ms */
+  /* animation-delay: 300ms;   */
+
+  /* Pause the animation */
+  /* animation-play-state: paused; */
+
+  /* Animation runs form the end to begin */
+  /* animation-direction: reverse; */
+
+  /* Animation continue to run infinite */
+  /* animation-iteration-count: infinite; */
+}
+
+@keyframes up {
+  from {    
+    opacity: 0;
+    transform: translatey(15px);
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .avatar {
