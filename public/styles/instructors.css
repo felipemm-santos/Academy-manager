@@ -1,0 +1,15 @@
+.card {
+  background-color: #fff;
+  width: 800px;
+  height: 400px;
+
+  margin: 45px auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.avatar {
+  background: url('https://source.unsplash.com/collection/9374406/500x500')
+    no-repeat center center / cover;
+}
