@@ -1,7 +1,7 @@
 .card {
   background-color: #fff;
   width: 800px;
-  height: 400px;
+  min-height: 400px;
 
   margin: 45px auto;
 
@@ -13,9 +13,10 @@
    */
   box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.2);
 
-  animation-name: up;
-  animation-duration: 200ms;
-  animation-timing-function: ease-out;
+  animation: up 200ms ease;
+  /* animation-name: up; */
+  /* animation-duration: 200ms; */
+  /* animation-timing-function: ease-out; */
 
   /* The element don't return to inicial state after animation  */
   /* animation-fill-mode: forwards; */
@@ -34,7 +35,7 @@
 }
 
 @keyframes up {
-  from {    
+  from {
     opacity: 0;
     transform: translatey(15px);
   }
@@ -46,4 +47,59 @@
 .avatar {
   background: url('https://source.unsplash.com/collection/9374406/500x500')
     no-repeat center center / cover;
+}
+
+/* DEtails */
+
+.details {
+  padding: 32px;
+}
+
+.details .item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  padding: 16px 0;
+}
+
+.details .item:last-child {
+  border: none;
+}
+
+.details h3,
+.details .item div:nth-child(1){
+  font-size: 18px;
+  line-height: 24px;
+
+  color: #777777;
+
+  letter-spacing: 0.7px;
+}
+
+.details .item div:nth-child(2){
+  color: #555555;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.details h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.details .item  span {
+  background-color: var(--secondary-color);    
+  color: #777777;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+
+  padding: 8px 16px;
+
+  border-radius: 16px;
+
+  margin-right: 4px;
+  margin-top: 8px;
+
+  display: inline-block;
 }
