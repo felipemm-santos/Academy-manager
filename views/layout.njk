@@ -3,7 +3,10 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Foodfy</title>
+        {% block title %}
+            <title>Gym Manager</title>
+        {% endblock title %}
+
         <link rel="stylesheet" href="/styles/main.css"/>
 
         {% block styles %}{% endblock styles %}
@@ -12,25 +15,18 @@
     </head>
 
     <body>
-        <div class="page">
-            <header>
-                <nav class="links">
-                    <div id="logo">
-                        {% block linkLogo %}{% endblock linkLogo %}
-                    </div>
+        <header>
+            <nav class="links">
+                <a href="/">Instructors</a>
+                <a href="/members">Members</a>
+            </nav>
+        </header>
 
-                    <div id="menu">
-                        {% block linksMenu %}{% endblock linksMenu %}
-                    </div>
-                </nav>
-            </header>
+        {% block content %}{% endblock content %}
 
-            {% block content %}{% endblock content %}
-
-            <footer>
-                <p>Todos direitos reservados, receitas Foodfy</p>
-            </footer>
-        </div>
+        <footer>
+            <p>Todos direitos reservados, Gym Manager</p>
+        </footer>
 
         {% block scripts %}{% endblock scripts %}
     </body>
