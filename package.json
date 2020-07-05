@@ -1,6 +1,6 @@
 {
   "name": "academy-manager",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "main": "server.js",
   "repository": "https://github.com/felipemm-santos/Academy-manager.git",
   "author": "Felipe Morais Mariano dos Santos <tfelipesantos99s@gmail.com>",
@@ -18,6 +18,6 @@
   "scripts": {
     "start": "npm-run-all -p nodemon browsersync",
     "nodemon": "nodemon server.js",
-    "browsersync": "browser-sync start --proxy http://localhost:5000 --files 'public,views'"
+    "browsersync": "browser-sync start --proxy http://localhost:5000 --files 'public, views'"
   }
 }
