@@ -1,0 +1,19 @@
+{
+  "name": "academy-manager",
+  "version": "0.2.0",
+  "main": "server.js",
+  "repository": "https://github.com/felipemm-santos/Academy-manager.git",
+  "author": "Felipe Morais Mariano dos Santos <tfelipesantos99s@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  }
+}

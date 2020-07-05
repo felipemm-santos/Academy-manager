@@ -1,0 +1,13 @@
+#about-page section h2 {
+  font-size: 24px;
+}
+
+#about-page section p {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  
+  color: #444444;
+
+  font-size: 18px;
+  line-height: 28px;  
+}
