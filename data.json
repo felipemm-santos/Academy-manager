@@ -1,7 +1,18 @@
 {
-    "avatar_url": "http://google.com",
-    "name": "afe",
-    "birth": "2002-05-23",
-    "gender": "M",
-    "services": "Crosfit"
+  "instructors": [
+    {
+      "avatar_url": "http://google.com",
+      "name": "fefe",
+      "birth": "1950-02-20",
+      "gender": "M",
+      "services": "Crosfit"
+    },
+    {
+      "avatar_url": "http://youtube.com",
+      "name": "asas",
+      "birth": "1986-07-25",
+      "gender": "M",
+      "services": "Crosfit"
+    }
+  ]
 }
