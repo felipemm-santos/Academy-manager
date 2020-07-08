@@ -12,15 +12,35 @@ exports.post = (req, res) => {
     }
   }
 
-  data.instructors.push(req.body);
+  req.body.birth = Date.parse(req.body.birth);
+  req.body.created_at = Date.now();
+  req.body.id = Number(data.instructors.length + 1);
+
+  const {
+    id,
+    avatar_url,
+    name,
+    birth,
+    gender,
+    services,
+    created_at,
+  } = req.body;
+
+  data.instructors.push({
+    id,
+    avatar_url,
+    name,
+    birth,
+    gender,
+    services,
+    created_at,
+  });
 
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
     if (err) return res.send('Write file error !');
 
     return res.redirect('/instructors');
   });
-
-  //   return res.send(req.body);
 };
 
 // update

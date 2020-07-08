@@ -1,18 +1,13 @@
 {
   "instructors": [
     {
+      "id": 1,
       "avatar_url": "http://google.com",
-      "name": "fefe",
-      "birth": "1950-02-20",
+      "name": "dsds",
+      "birth": 0,
       "gender": "M",
-      "services": "Crosfit"
-    },
-    {
-      "avatar_url": "http://youtube.com",
-      "name": "asas",
-      "birth": "1986-07-25",
-      "gender": "M",
-      "services": "Crosfit"
+      "services": "musculação",
+      "created_at": 1594202932151
     }
   ]
 }
