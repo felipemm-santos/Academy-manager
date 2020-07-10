@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = express.Router();
-const instructors = require('./instructors')
+const instructors = require('./instructors');
 
 routes.get('/', (req, res) => {
   return res.redirect('/instructors');
@@ -14,12 +14,14 @@ routes.get('/instructors/create', (req, res) => {
   return res.render('instructors/create');
 });
 
+routes.get('/instructors/:id', instructors.show);
+
 routes.post('/instructors', instructors.post);
 
 routes.get('/members', (req, res) => {
   return res.render('members');
 });
 
-routes.use((req, res) => res.status(404).render('not-found'));
+// routes.use((req, res) => res.status(404).render('not-found'));
 
 module.exports = routes;
