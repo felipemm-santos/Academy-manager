@@ -1,5 +1,6 @@
 const fs = require('fs');
 const data = require('./data.json');
+const { getAge } = require('./utils');
 
 // create
 exports.post = (req, res) => {
@@ -56,5 +57,12 @@ exports.show = (req, res) => {
     return res.send('Instructor not found!');
   }
 
-  return res.render('instructors/show', { instructor: foundInstructor });
+  const instructor = {
+    ...foundInstructor,
+    age: getAge(foundInstructor.birth),
+    services: foundInstructor.services.split(','),
+    created_at: '',
+  };
+
+  return res.render('instructors/show', { instructor });
 };
