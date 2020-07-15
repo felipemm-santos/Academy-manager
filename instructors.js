@@ -1,8 +1,9 @@
 const fs = require('fs');
+const Intl = require('intl');
+
 const data = require('./data.json');
 const { getAge, dateFormat } = require('./utils');
 
-// create
 exports.post = (req, res) => {
   const Keys = Object.keys(req.body);
 
@@ -44,8 +45,6 @@ exports.post = (req, res) => {
   });
 };
 
-// show
-
 exports.show = (req, res) => {
   const id = req.params.id;
 
@@ -54,14 +53,14 @@ exports.show = (req, res) => {
   });
 
   if (!foundInstructor) {
-    return res.send('Instructor not found!');
+    return res.render('not-found');
   }
 
   const instructor = {
     ...foundInstructor,
     age: getAge(foundInstructor.birth),
     services: foundInstructor.services.split(','),
-    created_at: new Intl.DateTimeFormat('en-GB').format(
+    created_at: new Intl.DateTimeFormat('pt-BR').format(
       foundInstructor.created_at
     ),
   };
@@ -77,7 +76,7 @@ exports.edit = (req, res) => {
   });
 
   if (!foundInstructor) {
-    return res.send('Instructor not found!');
+    return res.render('not-found');
   }
 
   const instructor = {
@@ -86,4 +85,35 @@ exports.edit = (req, res) => {
   };
 
   return res.render('instructors/edit', { instructor });
+};
+
+exports.put = (req, res) => {
+  const { id } = req.body;
+
+  let index = 0;
+
+  const foundInstructor = data.instructors.find((instructor, foundIndex) => {
+    if (id == instructor.id) {
+      index = foundIndex;
+      return true;
+    }
+  });
+
+  if (!foundInstructor) {
+    return res.send('Instructor not found!');
+  }
+
+  const instructor = {
+    ...foundInstructor,
+    ...req.body,
+    birth: Date.parse(req.body.birth),
+  };
+
+  data.instructors[index] = instructor;
+
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+    if (err) return res.sned('Write file error !');
+
+    return res.redirect(`/instructors/${id}`);
+  });
 };
