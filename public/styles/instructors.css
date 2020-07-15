@@ -139,3 +139,8 @@ a.button {
 
   text-decoration: none;
 }
+
+#form-delete button {
+  margin-top: 8px;
+  background-color: lightcoral;
+}

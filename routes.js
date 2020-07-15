@@ -2,6 +2,13 @@ const express = require('express');
 const routes = express.Router();
 const instructors = require('./instructors');
 
+/* HTTP VERBS
+  GET: Receber
+  POST: Criar OU Salvar
+  PUT: Atualizar
+  DELETE: Deletar
+*/
+
 routes.get('/', (req, res) => {
   return res.redirect('/instructors');
 });
@@ -22,12 +29,7 @@ routes.post('/instructors', instructors.post);
 
 routes.put('/instructors', instructors.put);
 
-/* HTTP VERBS
-  GET: Receber
-  POST: Criar OU Salvar
-  PUT: Atualizar
-  DELETE: Deletar
-*/
+routes.delete('/instructors', instructors.delete);
 
 routes.get('/members', (req, res) => {
   return res.render('members');
