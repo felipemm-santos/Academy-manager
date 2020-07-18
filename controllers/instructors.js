@@ -1,11 +1,15 @@
 const fs = require('fs');
 const Intl = require('intl');
 
-const data = require('./data.json');
-const { getAge, dateFormat } = require('./utils');
+const data = require('../data.json');
+const { getAge, dateFormat } = require('../utils');
 
 exports.index = (req, res) => {
   return res.render('instructors/index', { instructors: data.instructors });
+};
+
+exports.create = (req, res) => {
+  res.render('instructors/create');
 };
 
 exports.post = (req, res) => {
