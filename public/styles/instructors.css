@@ -186,7 +186,7 @@ tbody tr:last-child td {
 tbody tr td:first-child {
   display: grid;
   grid-template-columns: 64px 1fr;
-  gap: 10px;
+  gap: 30px;
   align-items: center;
 }
 
