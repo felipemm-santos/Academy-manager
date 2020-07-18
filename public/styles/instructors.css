@@ -160,10 +160,23 @@ a.button {
   text-align: left;
 }
 
-td,
-th {
+th,
+td {
   padding: 16px;
   border-bottom: 1px solid #d9d9d9;
+}
+
+th {
+  text-transform: uppercase;
+
+  color: #777777;
+
+  font-size: 18px;
+}
+
+tbody tr td {
+  font-size: 18px;
+  letter-spacing: 1px;
 }
 
 tbody tr:last-child td {
@@ -173,12 +186,39 @@ tbody tr:last-child td {
 tbody tr td:first-child {
   display: grid;
   grid-template-columns: 64px 1fr;
+  gap: 10px;
   align-items: center;
 }
 
 tbody tr td:first-child span {
-  width: 48px;
+  width: 64px;
   height: 64px;
+
   background-position: center;
   background-size: cover;
+
+  border-radius: 50%;
+
+  box-shadow: 3px 1px 6px -4px black;
+
+  border: 2px solid #fff;
+}
+
+tbody tr td:last-child a {
+  background-color: var(--primary-color);
+  color: white;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  font-size: 16px;
+
+  padding: 8px 16px;
+
+  border-radius: 4px;
+}
+
+.table-container thead tr th:last-child,
+td:last-child {
+  text-align: center;
 }
