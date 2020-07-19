@@ -55,7 +55,7 @@
       "gender": "F",
       "blood": "AB+",
       "weigth": "69",
-      "height": "165",
+      "heigth": "165",
       "id": 1
     },
     {
@@ -66,7 +66,7 @@
       "gender": "F",
       "blood": "O+",
       "weigth": "68",
-      "height": "162",
+      "heigth": "162",
       "id": 2
     }
   ]
