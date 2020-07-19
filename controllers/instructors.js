@@ -24,32 +24,21 @@ exports.post = (req, res) => {
 
   req.body.birth = Date.parse(req.body.birth);
   req.body.created_at = Date.now();
-  req.body.id = Number(data.instructors.length + 1);
 
-  const {
-    id,
-    avatar_url,
-    name,
-    birth,
-    gender,
-    services,
-    created_at,
-  } = req.body;
+  const lastInstructor = data.instructors[data.instructors.length - 1];
 
-  data.instructors.push({
-    id,
-    avatar_url,
-    name,
-    birth,
-    gender,
-    services,
-    created_at,
-  });
+  if (lastInstructor) {
+    req.body.id = lastInstructor + 1;
+  } else {
+    req.body.id = 1;
+  }
+
+  data.instructors.push(req.body);
 
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
     if (err) return res.send('Write file error !');
 
-    return res.redirect('/instructors');
+    return res.redirect(`/instructors/${req.body.id}`);
   });
 };
 
