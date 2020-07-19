@@ -46,5 +46,28 @@
       "created_at": 1594152952151
     }
   ],
-  "members": []
+  "members": [
+    {
+      "avatar_url": "https://source.unsplash.com/collection/9374406",
+      "name": "Ana",
+      "email": "ana@gmail.com",
+      "birth": 961718400000,
+      "gender": "F",
+      "blood": "A1",
+      "weigth": "60",
+      "height": "160",
+      "id": 1
+    },
+    {
+      "avatar_url": "https://source.unsplash.com/collection/9374406",
+      "name": "Beatriz",
+      "email": "beatriz@hotmail.com",
+      "birth": 1011398400000,
+      "gender": "F",
+      "blood": "O1",
+      "weigth": "68",
+      "height": "162",
+      "id": 2
+    }
+  ]
 }
