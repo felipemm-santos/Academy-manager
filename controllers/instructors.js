@@ -78,7 +78,7 @@ exports.edit = (req, res) => {
 
   const instructor = {
     ...foundInstructor,
-    birth: dateFormat(foundInstructor.birth),
+    birth: dateFormat(foundInstructor.birth).iso,
   };
 
   return res.render('instructors/edit', { instructor });
