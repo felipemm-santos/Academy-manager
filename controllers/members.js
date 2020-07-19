@@ -54,6 +54,7 @@ exports.show = (req, res) => {
 
   const member = {
     ...foundMember,
+    birth: dateFormat(foundMember.birth).birthDay,
     age: getAge(foundMember.birth),
   };
 
@@ -73,7 +74,7 @@ exports.edit = (req, res) => {
 
   const member = {
     ...foundMember,
-    birth: dateFormat(foundMember.birth),
+    birth: dateFormat(foundMember.birth).iso,
   };
 
   return res.render('members/edit', { member });
