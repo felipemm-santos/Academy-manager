@@ -16,7 +16,7 @@ module.exports = {
 
     return age;
   },
-  dateFormat(timestamp) {
+  date(timestamp) {
     const date = new Date(timestamp);
     const year = date.getUTCFullYear();
     const month = `0${date.getUTCMonth() + 1}`.slice(-2);
@@ -28,6 +28,7 @@ module.exports = {
       year,
       iso: `${year}-${month}-${day}`,
       birthDay: `${day}/${month}`,
+      format: `${day}/${month}/${year}`
     };
   },
 };
