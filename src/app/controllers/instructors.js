@@ -29,7 +29,7 @@ module.exports = {
   },
 
   show(req, res) {
-    Instructor.find(req.params.id, function (instructor) {      
+    Instructor.find(req.params.id, function (instructor) {
       if (!instructor) return res.render("not-found");
 
       instructor.age = getAge(instructor.birth);
@@ -42,6 +42,14 @@ module.exports = {
   },
 
   edit(req, res) {
+    Instructor.find(req.params.id, function (instructor) {
+      if (!instructor) return res.render("not-found");
+
+      instructor.birth = date(instructor.birth).iso;
+
+      return res.render("instructors/edit", { instructor });
+    });
+
     return;
   },
 
@@ -54,10 +62,15 @@ module.exports = {
         return res.send("Por favor , preencha todos os campos");
       }
     }
-    return;
+
+    Instructor.update(req.body, function () {
+      return res.redirect(`/instructors/${req.body.id}`);
+    });
   },
 
   delete(req, res) {
-    return;
+    Instructor.delete(req.body.id, function () {
+      return res.redirect(`/instructors`);
+    });
   },
 };
