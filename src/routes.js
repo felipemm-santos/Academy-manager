@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
-const instructors = require('./controllers/instructors');
-const members = require('./controllers/members');
+const instructors = require('./app/controllers/instructors');
+const members = require('./app/controllers/members');
 
 /* HTTP VERBS
   GET: Receber
@@ -9,6 +9,9 @@ const members = require('./controllers/members');
   PUT: Atualizar
   DELETE: Deletar
 */
+
+routes.get('/not-found', (req, res) => res.render('not-found'));
+
 routes.get('/', (req, res) => res.redirect('/instructors'));
 routes.get('/instructors', instructors.index);
 routes.get('/instructors/create', instructors.create);
@@ -28,6 +31,6 @@ routes.post('/members', members.post);
 routes.put('/members', members.put);
 routes.delete('/members', members.delete);
 
-routes.use((req, res) => res.status(404).render('not-found'));
+routes.use((req, res) => res.status(404).redirect('/not-found'));
 
 module.exports = routes;
