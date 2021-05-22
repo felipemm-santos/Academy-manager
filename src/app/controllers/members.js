@@ -23,14 +23,18 @@ module.exports = {
       }
     }
 
-    Member.create(req.body, function (member) {      
+    Member.create(req.body, function (member) {
       return res.redirect(`/members/${member.id}`);
     });
   },
 
   show(req, res) {
     Member.find(req.params.id, function (member) {
-      if (!member) return res.render("not-found");      
+      if (!member) return res.render("not-found");
+      member = {
+        ...member,
+        age: getAge(member.birth),
+      };
       member.birth = date(member.birth).birthDay;
 
       return res.render("members/show", { member });
@@ -40,7 +44,7 @@ module.exports = {
   edit(req, res) {
     Member.find(req.params.id, function (member) {
       if (!member) return res.render("not-found");
-      
+
       member.birth = date(member.birth).iso;
 
       return res.render("members/edit", { member });
@@ -51,7 +55,7 @@ module.exports = {
 
   put(req, res) {
     const Keys = Object.keys(req.body);
-    
+
     for (const key of Keys) {
       // req.body.key == ''
       if (req.body[key] == "") {
