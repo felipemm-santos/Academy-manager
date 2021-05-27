@@ -17,7 +17,7 @@
     <div>
         <input type="email" name="email" value="{{member.email}}">
     </div>
-</div>´
+</div>
 
 <div class="item">
     <div>Data de nascimento</div>
@@ -83,6 +83,20 @@
     <div>Altura (cm)</div>
     <div>
         <input type="number" name="height" value="{{member.height}}">
+    </div>
+</div>
+
+<div class="item">
+    <div>Instrutor</div>
+    <div>
+        <select name="instructor">           
+                {% for instructor in instructorOptions %}
+                    <option value="{{instructor.id}}" 
+                        {% if member.instructor_id == "{{instructor.id}}" %}                   selected="selected" {% endif%}>
+                        {{instructor.name}}
+                    </option>
+                {% endfor %}      
+        </select>
     </div>
 </div>
 

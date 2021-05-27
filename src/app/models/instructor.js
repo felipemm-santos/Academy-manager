@@ -4,11 +4,20 @@ const { getAge, date } = require("../../lib/utils");
 
 module.exports = {
   all(callback) {
-    db.query(`SELECT * FROM instructors`, function (err, results) {
-      if (err) throw `Database error! ${err}`;
+    db.query(
+      ` SELECT instructors.*, 
+      count(members) AS  total_students
+      FROM instructors
+      LEFT JOIN members ON (instructors.id = members.instructor_id)
+      GROUP BY instructors.id
+      ORDER BY total_students DESC
+      `,
+      function (err, results) {
+        if (err) throw `Database error! ${err}`;
 
-      callback(results.rows);
-    });
+        callback(results.rows);
+      }
+    );
   },
   create(data, callback) {
     const query = `
@@ -77,11 +86,15 @@ module.exports = {
       callback(results.rows[0]);
     });
   },
-  delete(id, callback){
-    db.query(`DELETE FROM instructors WHERE id=$1`, [id], function (err, results) {
-      if (err) throw `Database error! ${err}`;
+  delete(id, callback) {
+    db.query(
+      `DELETE FROM instructors WHERE id=$1`,
+      [id],
+      function (err, results) {
+        if (err) throw `Database error! ${err}`;
 
-      return callback();
-    })
-  }
+        return callback();
+      }
+    );
+  },
 };
