@@ -97,22 +97,46 @@ module.exports = {
       }
     );
   },
-  findBy(filter, callback) {
-    db.query(
-      ` SELECT instructors.*, 
-      count(members) AS  total_students
+  paginate(params) {
+    const { filter, limit, offset, callback } = params;
+
+    let query,
+      totalQuery = "",
+      filterQuery = "";
+
+    totalQuery = `(
+      SELECT count(*) FROM instructors
+        ) AS total`;
+
+    if (filter) {
+      filterQuery = `
+        WHERE instructors.name ILIKE '%${filter}%'
+        OR instructors.services ILIKE '%${filter}%'
+      `;
+
+      totalQuery = `(
+        SELECT count(*) FROM instructors
+        ${filterQuery}
+      ) AS total`;
+    }
+
+    query = `
+      SELECT instructors.*, ${totalQuery}, count(members) AS total_students
       FROM instructors
       LEFT JOIN members ON (instructors.id = members.instructor_id)
-      WHERE instructors.name ILIKE '%${filter}%'
-      OR instructors.services ILIKE '%${filter}%'
-      GROUP BY instructors.id
-      ORDER BY total_students DESC
-      `,
-      function (err, results) {
-        if (err) throw `Database error! ${err}`;
+      ${filterQuery}    
+      GROUP BY instructors.id 
+      LIMIT $1
+      OFFSET $2
+    `;
 
-        callback(results.rows);
-      }
-    );
+    // console.log(query);
+    // return;
+
+    db.query(query, [limit, offset], function (err, results) {
+      if (err) throw `Foi aqui! ${err}`;
+
+      callback(results.rows);
+    });
   },
 };

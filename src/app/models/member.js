@@ -20,7 +20,7 @@ module.exports = {
         birth,
         blood,
         weight,
-        height
+        height,
         instructor_id
       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING id
@@ -102,6 +102,46 @@ module.exports = {
   instructorSelectOptions(callback) {
     db.query(` SELECT name, id FROM instructors`, function (err, results) {
       if (err) throw "Database Error";
+
+      callback(results.rows);
+    });
+  },
+  paginate(params) {
+    const { filter, limit, offset, callback } = params;
+
+    let query,
+      totalQuery = "",
+      filterQuery = "";
+
+    totalQuery = `(
+      SELECT count(*) FROM members
+        ) AS total`;
+
+    if (filter) {
+      filterQuery = `
+        WHERE members.name ILIKE '%${filter}%'
+        OR members.email ILIKE '%${filter}%'
+      `;
+
+      totalQuery = `(
+        SELECT count(*) FROM members
+        ${filterQuery}
+      ) AS total`;
+    }
+
+    query = `
+      SELECT members.*, ${totalQuery}
+      FROM members      
+      ${filterQuery}      
+      LIMIT $1
+      OFFSET $2
+    `;
+
+    // console.log(query);
+    // return;
+
+    db.query(query, [limit, offset], function (err, results) {
+      if (err) throw `Foi aqui! ${err}`;
 
       callback(results.rows);
     });
