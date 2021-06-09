@@ -1,7 +1,6 @@
 const Instructor = require("../models/instructor");
 
 const { getAge, date } = require("../../lib/utils");
-const instructor = require("../models/instructor");
 
 module.exports = {
   index(req, res) {
